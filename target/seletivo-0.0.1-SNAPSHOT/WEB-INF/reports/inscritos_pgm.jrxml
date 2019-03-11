@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="inscritos_pgm" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style mode="Opaque" backcolor="#EEEFF0"/>
+		</conditionalStyle>
+	</style>
+	<style name="Table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#CACED0">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#D8D8D8"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="tableDataset" uuid="f13e6d36-5148-4ecc-bbe3-3035def80980">
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * from cadastro]]>
+	</queryString>
+	<field name="id" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cadastro"/>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="nome"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cadastro"/>
+	</field>
+	<field name="rg" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="rg"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cadastro"/>
+	</field>
+	<field name="emissor" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="emissor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cadastro"/>
+	</field>
+	<field name="ampla" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.label" value="ampla"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cadastro"/>
+	</field>
+	<group name="Gruppo1">
+		<groupExpression><![CDATA[($F{ampla}?"Candidatos ampla concorrência":"Candidatos portadores de necessidades especiais")]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<textField isBlankWhenNull="true">
+					<reportElement positionType="Float" x="0" y="8" width="552" height="20" forecolor="#000000" uuid="7704da8a-15f5-49a1-9c4c-5fa682bd4652"/>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement>
+						<font fontName="Arial" size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[($F{ampla}?"Candidatos ampla concorrência":"Candidatos portadores de necessidades especiais")]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band>
+				<property name="local_mesure_unitheight" value="pixel"/>
+				<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="81" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="80" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<image hAlign="Center">
+				<reportElement x="0" y="0" width="90" height="60" uuid="94883631-a913-43e2-b182-ab8d77d0181e"/>
+				<imageExpression><![CDATA["https://www.pciconcursos.com.br/i/5d915727801bff4242c4fef544b62373.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="121" y="0" width="319" height="25" uuid="e622555d-198b-4ccd-a4a1-c59c53304058">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Município de Teresina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="25" width="319" height="25" uuid="c226e44d-3bb5-4145-b0b3-903bf1d79fde"/>
+				<textElement textAlignment="Center">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Procuradoria Geral do Município]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="90" y="50" width="410" height="25" uuid="98e9b815-0a73-4fdf-957e-5503927b5194"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Processo Seletivo Estagiário - Inscrições Confirmadas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="60" y="0" width="61" height="20" forecolor="#000000" uuid="1587eb36-3438-4273-8947-d018e2369f05">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3f14630-1343-414f-9b8d-d9f21b4ee0f9"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inscrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="121" y="0" width="289" height="20" forecolor="#000000" uuid="2495a24b-a0dd-4547-9239-5adef7bb1895">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3e27c22-6ab9-4da8-9a4f-6b8b9cd662bc"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" positionType="Float" x="410" y="0" width="142" height="20" forecolor="#000000" uuid="a3c919a5-9d03-444a-8a7d-a1b95ca9aaf2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a1c50b1f-8608-4655-95fa-91a201e1d6b8"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nº Doc. de Identidade]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="60" y="0" width="61" height="20" uuid="c0df440c-af29-4f87-847e-3f437c92069d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f3f14630-1343-414f-9b8d-d9f21b4ee0f9"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.format("%04d",$F{id})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="121" y="0" width="289" height="20" uuid="6733de33-58f4-45c8-adcf-075c1c098460">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b3e27c22-6ab9-4da8-9a4f-6b8b9cd662bc"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}.toUpperCase()]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="Detail" positionType="Float" x="410" y="0" width="142" height="20" uuid="fc5deff6-4be0-4e6d-9e69-bd012d6ce988">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a1c50b1f-8608-4655-95fa-91a201e1d6b8"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band/>
+	</lastPageFooter>
+</jasperReport>

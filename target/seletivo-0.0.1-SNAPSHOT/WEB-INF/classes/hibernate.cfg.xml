@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+		<!-- Propriedades de conexão ao banco -->
+		<property name="hibernate.connection.username">
+			root
+		</property>
+		<property name="hibernate.connection.password">
+			dinY2vEgdePA
+		</property>
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost:3306/db_seletivopgm?autoReconnect=true&amp;useSSL=false
+			<!-- &amp;useTimezone=true&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8 -->
+		</property>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.cj.jdbc.Driver
+		</property>
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQL57InnoDBDialect
+		</property>
+		<property name="hibernate.c3p0.acquire_increment">5</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="show_sql">true</property>
+		<property name="format_sql">true</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		<property name="connection.useUnicode">true</property> 
+		<property name="connection.characterEncoding">UTF-8</property>
+		<property name="connection.charSet">UTF-8</property>
+		
+		<!-- Entidades (tabelas) -->
+		<mapping class="seletivo_pgm.entity.Cadastro" />
+		<mapping class="seletivo_pgm.entity.Cidade" />
+		<mapping class="seletivo_pgm.entity.Estado" />
+		<mapping class="seletivo_pgm.entity.Usuario" />
+				
+	</session-factory>
+	
+</hibernate-configuration>

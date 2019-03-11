@@ -1,0 +1,132 @@
+<%@page import="java.util.Date"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="pt-br">
+<head>
+<!-- Mobile viewport optimized -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+<meta name="keywords" content="Seletivo">
+<meta name="keywords" content="Estagio">
+<meta name="keywords" content="pgm">
+<meta name="keywords" content="procuradoria geral do municipio">
+
+<link href="http://pgm.teresina.pi.gov.br/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+
+<!-- Imports CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Imports Scripts -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+<script src="https://github.com/makeusabrew/bootbox/releases/download/v4.4.0/bootbox.min.js"></script>
+
+<style type="text/css">
+	
+	#header_up {background:#2D5C88; height:auto;}
+	#header_up, #header_down, #footer { width:100%; float:left; height:auto;}
+	#info, #topo, #meio, #sombra_meio, #rodape {width:980px; margin:0 auto;}
+	#info {padding:5px 0px; position:relative; display:table;}
+	#info {background-color: };
+	#topo {min-height:100px; position:relative; background:transparent; height:auto;}
+	#meio {min-height:400px; display:table; padding-top:10px; /*-moz-box-shadow: 0 0px 5px rgba(0,0,0,0.3); -webkit-box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3); box-shadow: 0 0px 5px rgba(0, 0, 0, 0.3);*/}
+	#sombra_meio {background: url(../img/big_shadow.png) no-repeat center center; width:auto; height:37px;}
+	.saudacao {font-size:12px; color:#fff; width:auto; float:left; margin-top:6px; font-weight:bold;}
+	.hoje {font-size:11px; color:#fff; width:auto; float:left; margin-top:6px; /*margin-left:168px;*/ position: absolute; right: 200px;}
+	
+@media screen and (min-width: 800px){
+	.pesquisa {min-width: 173px; float:right; border:1px solid #E1E1E1; background:#F8F8F8; display:table; position:relative;}
+}
+
+	.pesquisa form .filtro {border:none; padding:3px 40px 3px 10px; color: gray; background:transparent; font-size:12px; font-family:inherit;}
+	.pesquisa form .filtro:focus {border:none;}
+	.pesquisa form .busca {border: none; cursor: pointer; background: url(../img/icon-search-button.png) no-repeat center center; height: 25px; width:37px; display:block; position: absolute; right: 0px; top:0px; overflow: hidden;}
+	#header_down {min-height:100px; border-top:6px solid #F6F6F6; margin:5px 0px;}
+
+@media screen and (min-width: 800px){
+	#content {width:75%; float:center;}
+}
+
+.logo {background:url(http://pgm.teresina.pi.gov.br/img/header.png) no-repeat center center; width: 600px; height: 60px;}
+
+#content {display:table;}
+#login{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+.mybox-shadow{box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+table{font-size: 9pt; font-family: Arial, Helvetica, sans-serif;}
+
+@media print{
+    .noPrint, .noPrint * {
+        display: none !important;
+    }
+}
+
+</style>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+		$('form').submit(function(e){
+			bootbox.dialog({ message: '<div class="text-center" style="width: 30%; float: center;"><i class="fa fa-spin fa-spinner"></i> Carregando...</div>' });
+		});
+
+		$('.mySpinner').click(function(e){
+			bootbox.dialog({ message: '<div class="text-center" style="width: 30%; float: center;"><i class="fa fa-spin fa-spinner"></i> Carregando...</div>' });
+		});
+		
+	});
+
+</script>
+        
+<title>Procuradoria Geral do Município | PGM</title>
+</head>
+<body>
+<div id="header_up">
+<div id="info">
+  <div class="saudacao">Procuradoria Geral Município</div>
+  <div class="hoje">Teresina, 
+  <%
+    java.util.Locale local = new java.util.Locale("pt", "BR");
+    java.text.SimpleDateFormat fmt = new java.text.SimpleDateFormat("d 'de' MMMM 'de' yyyy", local);
+    java.text.SimpleDateFormat fmtyear = new java.text.SimpleDateFormat("yyyy", local);
+  %>
+  <%=
+  	fmt.format(new java.util.Date())
+  %>
+  </div>
+  <div class="pesquisa">
+    <form action="http://pgm.teresina.pi.gov.br/blog" id="" class="" method="get">
+      <input type="text" id="filtro" name="filtro" class="filtro" value="pesquise" onfocus="if(this.value=='pesquise')this.value='';" onblur="if(this.value=='')this.value='pesquise';">
+      <input type="submit" value="" id="busca" class="busca">
+    </form>
+  </div>
+</div>
+</div>
+
+<div id="header_down" class="container noPrint">
+	<div id="topo">
+	<div>
+		<img alt="" src="http://pgm.teresina.pi.gov.br/img/header.png" class="img-responsive">	
+	</div>
+	</div>	
+</div>
+
+
+<div class="container" id="content">
+
+	<hr>
