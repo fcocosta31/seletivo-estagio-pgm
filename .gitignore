@@ -1,4 +1,3 @@
 src/main/resources/development.properties
 src/main/resources/environment.properties
-src/main/resources/hibernate.cfg.xml
 src/main/resources/production.properties
